@@ -26,7 +26,7 @@ namespace API_Shashin11
                     Title = "–уководство дл€ использовани€ запросов",
                     Description = "ѕолное руководство дл€ использовани€ запросов наход€щихс€ в проекте"
                 });
-                var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_Shashin.xml");
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_Shashin11.xml");
                 c.IncludeXmlComments(filePath);
             });
         }
