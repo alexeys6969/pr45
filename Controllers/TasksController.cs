@@ -78,5 +78,31 @@ namespace API_Shashin11.Controllers
                 return StatusCode(500);
             }
         }
+
+        ///<summary>
+        /// Метод добавления задачи
+        /// </summary>
+        /// <param name="task">Данные о задаче</param>
+        /// <returns>Статус выполнения запроса</returns>
+        /// <remarks>Данный метод добавляет задачу в базу данных</remarks>
+        [Route("Add")]
+        [HttpPut]
+        [ApiExplorerSettings(GroupName = "v3")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+        public ActionResult Add([FromForm]Tasks task)
+        {
+            try
+            {
+                TasksContext tasksContext = new TasksContext();
+                tasksContext.Tasks.Add(task);
+                tasksContext.SaveChanges();
+                return StatusCode(200);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }

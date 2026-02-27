@@ -54,7 +54,7 @@ namespace API_Shashin11
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы POST");
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы PUT");
+                c.SwaggerEndpoint("/swagger/v3/swagger.json", "Запросы PUT");
             });
         }
     }
