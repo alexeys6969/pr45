@@ -14,7 +14,7 @@ namespace API_Shashin11.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=127.0.0.1;uid=root;pwd=;database=TaskManager", new MySqlServerVersion(new Version(8, 0, 11)));
+            optionsBuilder.UseMySql("server=127.0.0.1;port=3307;uid=root;pwd=;database=TaskManager", new MySqlServerVersion(new Version(8, 0, 11)));
         }
     }
 }
