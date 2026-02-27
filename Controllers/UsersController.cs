@@ -83,7 +83,7 @@ namespace API_Shashin11.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine($"Ошибка при регистрации: {ex.Message}");
-                return StatusCode(500, "Внутренняя ошибка сервера");
+                return StatusCode(500, "Внутренняя ошибка сервера111");
             }
         }
     }
