@@ -1,8 +1,10 @@
 ﻿using API_Shashin11.Context;
 using API_Shashin11.Model;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace API_Shashin11.Controllers
 {
@@ -135,6 +137,72 @@ namespace API_Shashin11.Controllers
             catch
             {
                 return StatusCode(500);
+            }
+        }
+
+        ///<summary>
+        /// Метод удаления задачи
+        /// </summary>
+        /// <returns>Статус выполнения запроса</returns>
+        /// <remarks>Данный метод удаляет задачу из базы данных</remarks>
+        [Route("Delete")]
+        [HttpDelete]
+        [ApiExplorerSettings(GroupName = "v4")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public ActionResult Delete(int Id)
+        {
+            try
+            {
+                using (var context = new TasksContext())
+                {
+                    // Находим задачу
+                    var task = context.Tasks.FirstOrDefault(x => x.Id == Id);
+
+                    // Если задача не найдена
+                    if (task == null)
+                        return NotFound($"Задача с ID {Id} не найдена");
+
+                    // Удаляем задачу
+                    context.Tasks.Remove(task);
+                    context.SaveChanges();
+
+                    return Ok($"Задача с ID {Id} успешно удалена");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении: {ex.Message}");
+                return StatusCode(500, "Внутренняя ошибка сервера");
+            }
+        }
+
+        ///<summary>
+        /// Метод удаления записей из таблицы
+        /// </summary>
+        /// <returns>Статус выполнения запроса</returns>
+        /// <remarks>Данный метод удаляет записи из таблицы</remarks>
+        [Route("DeleteFrom")]
+        [HttpDelete]
+        [ApiExplorerSettings(GroupName = "v4")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public ActionResult DeleteFrom()
+        {
+            try
+            {
+                TasksContext context = new TasksContext();
+                var allTasks = context.Tasks.ToList();
+                context.RemoveRange(allTasks);
+                context.SaveChanges();
+                return Ok($"Удалено {allTasks.Count} записей");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении: {ex.Message}");
+                return StatusCode(500, "Внутренняя ошибка сервера");
             }
         }
     }
