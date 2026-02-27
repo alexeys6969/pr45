@@ -90,7 +90,7 @@ namespace API_Shashin11.Controllers
         [ApiExplorerSettings(GroupName = "v3")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
-        public ActionResult Add([FromForm]Tasks task)
+        public ActionResult Add11([FromForm]Tasks task)
         {
             try
             {
