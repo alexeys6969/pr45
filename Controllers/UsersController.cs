@@ -57,7 +57,7 @@ namespace API_Shashin11.Controllers
         public ActionResult RegIn([FromForm] string Login, [FromForm] string Password)
         {
             if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
-                return BadRequest("Логин и пароль обязательны для заполнения"); // 400
+                return BadRequest("Логин и пароль обязательны для заполнения");
 
             try
             {
@@ -83,7 +83,7 @@ namespace API_Shashin11.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine($"Ошибка при регистрации: {ex.Message}");
-                return StatusCode(500, "Внутренняя ошибка сервера111");
+                return StatusCode(500, "Внутренняя ошибка сервера");
             }
         }
     }

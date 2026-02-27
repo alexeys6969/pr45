@@ -32,6 +32,12 @@ namespace API_Shashin11
                     Title = "Руководство для использования запросов",
                     Description = "Полное руководство для использования запросов находящихся в проекте"
                 });
+                c.SwaggerDoc("v3", new OpenApiInfo
+                {
+                    Version = "v3",
+                    Title = "Руководство для использования запросов",
+                    Description = "Полное руководство для использования запросов находящихся в проекте"
+                });
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_Shashin11.xml");
                 c.IncludeXmlComments(filePath);
             });
@@ -48,6 +54,7 @@ namespace API_Shashin11
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы POST");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы PUT");
             });
         }
     }
