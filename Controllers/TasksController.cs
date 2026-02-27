@@ -183,7 +183,7 @@ namespace API_Shashin11.Controllers
         /// </summary>
         /// <returns>Статус выполнения запроса</returns>
         /// <remarks>Данный метод удаляет записи из таблицы</remarks>
-        [Route("DeleteFrom")]
+        [Route("DeleteFrom1")]
         [HttpDelete]
         [ApiExplorerSettings(GroupName = "v4")]
         [ProducesResponseType(200)]
