@@ -37,7 +37,7 @@ namespace API_Shashin11.Controllers
         /// <remarks>Данный метод получает задачу из БД</remarks>
         /// <response code="200">Задача успешно получена</response>
         /// <response code="500">При выполнении запроса возникли ошибки</response>
-        [Route("Item")]
+        [Route("Item/{Id}")]
         [HttpGet]
         [ProducesResponseType(typeof(Tasks), 200)]
         [ProducesResponseType(500)]
@@ -46,6 +46,29 @@ namespace API_Shashin11.Controllers
             try
             {
                 Tasks Task = new TasksContext().Tasks.Where(x => x.Id == Id).First();
+                return Json(Task);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        ///<summary>
+        ///Получение задачи по имени
+        /// </summary>
+        /// <remarks>Данный метод получает задачу из БД</remarks>
+        /// <response code="200">Задача успешно получена</response>
+        /// <response code="500">При выполнении запроса возникли ошибки</response>
+        [Route("Item/search={Name}")]
+        [HttpGet]
+        [ProducesResponseType(typeof(Tasks), 200)]
+        [ProducesResponseType(500)]
+        public ActionResult Item(string Name)
+        {
+            try
+            {
+                Tasks Task = new TasksContext().Tasks.Where(x => x.Name == Name).First();
                 return Json(Task);
             }
             catch
