@@ -6,6 +6,8 @@ using System.Linq;
 
 namespace API_Shashin11.Controllers
 {
+    [Route("api/TasksController")]
+    [ApiExplorerSettings(GroupName = "v1")]
     public class TasksController : Controller
     {
         ///<summary>
