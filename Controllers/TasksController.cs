@@ -90,12 +90,45 @@ namespace API_Shashin11.Controllers
         [ApiExplorerSettings(GroupName = "v3")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
-        public ActionResult Add11([FromForm]Tasks task)
+        public ActionResult Add([FromForm]Tasks task)
         {
             try
             {
                 TasksContext tasksContext = new TasksContext();
                 tasksContext.Tasks.Add(task);
+                tasksContext.SaveChanges();
+                return StatusCode(200);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        ///<summary>
+        /// Метод обновления задачи
+        /// </summary>
+        /// <param name="task">Данные о задаче</param>
+        /// <returns>Статус выполнения запроса</returns>
+        /// <remarks>Данный метод обновляет задачу в базу данных</remarks>
+        [Route("Update")]
+        [HttpPut]
+        [ApiExplorerSettings(GroupName = "v3")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+        public ActionResult Update([FromForm] Tasks task)
+        {
+            try
+            {
+                TasksContext tasksContext = new TasksContext();
+                var existingTask = tasksContext.Tasks.Find(task.Id);
+                if (existingTask == null)
+                    return NotFound();
+                existingTask.Name = task.Name;
+                existingTask.Priority = task.Priority;
+                existingTask.DateExecute = task.DateExecute;
+                existingTask.Comment = task.Comment;
+                existingTask.Done = task.Done;
                 tasksContext.SaveChanges();
                 return StatusCode(200);
             }
